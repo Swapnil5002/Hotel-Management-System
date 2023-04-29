@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-function withErrorBoundary(WrappedComponent) {
-  return function ErrorBoundary(props) {
-    const [error, setError] = useState(null);
-  
-    if (error) {
-      return <div>An error occurred: {error.toString()}</div>;
-    }
-  
-    try {
-      return <WrappedComponent {...props} />;
-    } catch (err) {
-      setError(err);
-    }
+function ErrorBoundary({ errorElement, children }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return errorElement;
   }
+
+  return children;
 }
 
-export default withErrorBoundary;
+ErrorBoundary.propTypes = {
+  errorElement: PropTypes.element,
+  children: PropTypes.node.isRequired,
+};
+
+ErrorBoundary.defaultProps = {
+  errorElement: <h1>Something went wrong.</h1>,
+};
+
+export default ErrorBoundary;
