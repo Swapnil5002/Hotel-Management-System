@@ -1,13 +1,9 @@
-import './App.css';
-import withErrorBoundary from './HOC/error-boundary';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Login from "./pages/login";
 
 function App() {
-  return (
-    <div className="App">
-      Hotel Management APP  
-    </div>
-  );
+  return <Login />;
 }
 
-export default withErrorBoundary(App);
+export default App;
